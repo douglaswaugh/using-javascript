@@ -99,6 +99,7 @@ describe('sinon', function(){
         beforeEach(function(){
             var expectFutureSupply;
             dep2 = new Dependency();
+            /* need to pass in the real object as the dependency instead of the mock.  I find this weird. */
             mock = sinon.mock(dep2);
             mock.expects("functionCall").withExactArgs('/rels/domestic/preferences');
             /*doesn't handle two difference expectations*/
