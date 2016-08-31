@@ -53,7 +53,7 @@ describe('sinon', function(){
         futureSupply = { name: 'future supply' };
 
         beforeEach(function(){
-            var depFunctionCall = sinon.stub();  
+            var depFunctionCall = sinon.stub();
             depFunctionCall.returns(preferences);
             var dep = {};
             dep.functionCall = depFunctionCall;
@@ -63,20 +63,20 @@ describe('sinon', function(){
         it('should return preferences when argument is preferences rel', function(){
             var returnVal = testClass.callDep('/rels/domestic/preferences');
             expect(returnVal).toBe(preferences);
-        });    
+        });
 
         it('should return preferences when argument is future supply rel', function(){
             var returnVal = testClass.callDep('/rels/domestic/future-supply');
             expect(returnVal).toBe(preferences);
-        });  
+        });
     });
 
     describe('spy', function(){
         var spy, textClass, dep;
 
-        beforeEach(function(){ 
-            dep = new Dependency(); 
-            spy = sinon.spy(dep, "functionCall");            
+        beforeEach(function(){
+            dep = new Dependency();
+            spy = sinon.spy(dep, "functionCall");
             testClass = new TestClass(dep);
         });
 
@@ -121,8 +121,8 @@ describe('spy option', function() {
 
     dep = jasmine.createSpyObj('dependency', ['functionCall']);
 
-    describe('and callFake', function(){    
-        beforeEach(function(){            
+    describe('and callFake', function(){
+        beforeEach(function(){
             dep.functionCall.and.callFake(function(rel){
                 if (rel === '/rels/domestic/preferences'){
                     return preferences;
@@ -130,10 +130,10 @@ describe('spy option', function() {
                 else if (rel === '/rels/domestic/future-supply'){
                     return futureSupply;
                 }
-            });        
+            });
             testClass = new TestClass(dep);
         });
-        
+
         it('should return future supply', function() {
             var returnVal = testClass.callDep('/rels/domestic/future-supply');
             expect(dep.functionCall).toHaveBeenCalledWith('/rels/domestic/future-supply');
