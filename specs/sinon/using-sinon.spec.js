@@ -1,26 +1,22 @@
 function TestClass(dependency) {
     this.dep = dependency;
-};
-    
+}
+
 TestClass.prototype.callDep = function(arg) {
-    return this.dep.functionCall(arg);        
+    return this.dep.functionCall(arg);
 };
 
-function Dependency() {
-
-};
+function Dependency() {}
 
 Dependency.prototype.functionCall = function(args) {
     return args;
 };
 
-function NoDependency(){
-
-};
+function NoDependency() {}
 
 describe('sinon', function(){
     describe('stub with args', function(){
-        var testClass, preferences, futureSupply;        
+        var testClass, preferences, futureSupply;
 
         preferences = { name: 'preferences' };
         futureSupply = { name: 'future supply' };
@@ -166,13 +162,13 @@ describe('spy option', function() {
         it('dep functionCall should have been called with the future supply rel', function(){
             expect(dep.functionCall).toHaveBeenCalledWith('/rels/domestic/future-supply');
         });
-            
+
         it('should return value 2 first', function(){
             expect(returnVal1).toBe(futureSupply);
         });
 
         it('should return value 2 second', function(){
             expect(returnVal2).toBe(futureSupply);
-        })
+        });
     });
 });
