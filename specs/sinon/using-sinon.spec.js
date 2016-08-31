@@ -111,6 +111,27 @@ describe('sinon', function(){
             testClass.callDep('/rels/domestic/preferences');
             mock.verify();
         });
+
+        it('should be able to verify calls on literal objects', function() {
+            var mock2,
+                testClass,
+                dep3;
+
+            dep3 = {functionCall: function(){}};
+            mock = sinon.mock(dep3);
+            mock.expects('functionCall').withExactArgs('/rels/domestic/preferences');
+
+            testClass = {
+                dependency: dep3,
+                callDep: function(args) {
+                    return this.dependency.functionCall(args);
+                }
+            };
+
+            console.log(testClass);
+            testClass.callDep('/rels/domestic/preferences');
+            mock.verify();
+        });
     });
 });
 
